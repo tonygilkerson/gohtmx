@@ -5,6 +5,7 @@ Simple Go webserver serving up htmx
 ## Local testing
 
 ```sh
+export WEB_ROOT=$PWD
 go run cmd/gohtmx/main.go
 open http://localhost:8080/
 ```

@@ -16,12 +16,12 @@ func main() {
 	//
 	// Get environment Variables
 	//
-	contextFile, exists := os.LookupEnv("WEB_ROOT")
+	webRoot, exists := os.LookupEnv("WEB_ROOT")
 	if exists {
-		log.Printf("Using environment variable WEB_ROOT: %v", contextFile)
+		log.Printf("Using environment variable WEB_ROOT: %v", webRoot)
 	} else {
-		contextFile = "/etc/gohtmx"
-		log.Printf("WEB_ROOT environment variable not set, using default value: %v", contextFile)
+		webRoot, _ = os.Executable() 
+		log.Printf("WEB_ROOT environment variable not set, using default value: %v", webRoot)
 	}
 
 	//
@@ -30,11 +30,14 @@ func main() {
 	mux := http.NewServeMux()
   svr := &http.Server{Addr: ":8080", Handler: mux,}
 
-	
+	// Create a new site instance
+	site := gothmx.NewSite(webRoot)
+
 	//
 	// Define routes
 	//
-	mux.HandleFunc("/", gothmx.HomeHandler)
+	mux.HandleFunc("/", site.HomeHandler)
+	
 	mux.HandleFunc("/hi", gothmx.HiHandler)
 	mux.HandleFunc("/greeting", gothmx.GreetingHandler)
 
