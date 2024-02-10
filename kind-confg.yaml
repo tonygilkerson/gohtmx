@@ -11,9 +11,6 @@ nodes:
         node-labels: "ingress-ready=true"
         authorization-mode: "AlwaysAllow"
   extraPortMappings:
-  - containerPort: 80
-    hostPort: 8080
-    protocol: TCP
-  - containerPort: 443
-    hostPort: 8443
+  - containerPort: 31080 # nodePort of the service running in the cluster
+    hostPort: 8080       # port on my laptop
     protocol: TCP

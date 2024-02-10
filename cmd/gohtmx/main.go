@@ -35,6 +35,8 @@ func main() {
 	// Define routes
 	//
 	mux.HandleFunc("/", gothmx.HomeHandler)
+	mux.HandleFunc("/hi", gothmx.HiHandler)
+	mux.HandleFunc("/greeting", gothmx.GreetingHandler)
 
 	mux.HandleFunc("/readyz", func(w http.ResponseWriter, r *http.Request) {
 		_,_ = w.Write([]byte("ok"))
