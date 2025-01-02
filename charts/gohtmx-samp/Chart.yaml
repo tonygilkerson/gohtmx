@@ -1,6 +1,0 @@
-apiVersion: v2
-name: gohtmx
-description: A Helm chart for deploying the gohtmx app on Kubernetes
-type: application
-version: 1.0.0
-appVersion: "1.0.0"
